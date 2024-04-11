@@ -1,8 +1,21 @@
+import React, { useState } from "react";
+
 import logo from "./logo.svg";
 import "./App.css";
 import AppForm from "./components/AppForm/AppForm";
+import PDFViewer from "pdf-viewer-reactjs";
+import { fetchConvertedPdf } from "./services/endpoints";
 
 function App() {
+  const [pdfUrl, setPdfUrl] = useState(
+    "https://arxiv.org/pdf/quant-ph/0410100.pdf"
+  );
+
+  const convertData = (data) => {
+    console.log(data);
+    //setPdfUrl(fetchConvertedPdf(data));
+  };
+
   return (
     <div className="flex flex-col items-center justify-start h-screen bg-stone-300">
       <header className="text-center flex flex-col items-center justify-start">
@@ -12,7 +25,8 @@ function App() {
         </h3>
       </header>
       <main className="flex flex-col items-center justify-start w-full">
-        <AppForm />
+        <AppForm convertData={convertData} />
+        <PDFViewer document={{ url: pdfUrl }} />
       </main>
     </div>
   );
