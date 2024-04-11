@@ -14,7 +14,7 @@ function AppForm({ convertData }) {
     >
       <textarea
         ref={textareaRef}
-        className="w-full h-40 p-4 bg-stone-500 text-white border border-gray rounded-md focus:outline-none"
+        className="w-full h-40 p-4 bg-stone-200 text-brown border border-gray rounded-md focus:outline-none"
         placeholder="Enter your text here..."
       ></textarea>
       <button
