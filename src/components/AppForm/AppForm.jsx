@@ -19,7 +19,7 @@ function AppForm({ convertData }) {
       ></textarea>
       <button
         type="submit"
-        className="w-1/3 bg-stone-700 text-stone-100 py-2 px-4 rounded-full shadow-md hover:bg-stone-100 hover:text-stone-700"
+        className="bg-gradient-to-r from-pink-violet-start to-pink-violet-end w-1/3 text-stone-100 py-2 px-4 rounded-full shadow-md hover:bg-stone-100 hover:text-stone-700"
       >
         Convert to PDF
       </button>

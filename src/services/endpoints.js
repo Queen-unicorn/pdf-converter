@@ -15,7 +15,8 @@ export const fetchConvertedPdf = async (text) => {
       body: JSON.stringify(requestBody),
     });
 
-    return await response.json();
+    const pdfBlob = await response.blob();
+    return pdfBlob;
   } catch (error) {
     console.error("Error: ", error);
   }

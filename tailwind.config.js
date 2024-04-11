@@ -3,12 +3,12 @@ module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
     extend: {
-      gradientColorStops: (theme) => ({
-        "purple-pink": {
-          "0%": theme("colors.purple"),
-          "100%": theme("colors.pink"),
+      gradientColorStops: {
+        "pink-violet": {
+          start: "#FF6B6B",
+          end: "#8B5CF6",
         },
-      }),
+      },
       screens: {
         sm: "480px",
         md: "768px",
