@@ -20,5 +20,6 @@ Project components:
   Data stores in localStorage.
 
 Also for better understending of logic there is a services folder that contains:
--endpoints: file with fetching API call. There is also an API_KEY
--utils: file with functions to work with data - converting PDF file to Blob and back, sorting history, downloading file to the PC etc.
+
+- endpoints: file with fetching API call. There is also an API_KEY
+- utils: file with functions to work with data - converting PDF file to Blob and back, sorting history, downloading file to the PC etc.
