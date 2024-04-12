@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
@@ -9,24 +8,18 @@ import "./App.css";
 
 import HistoryTable from "./components/HistoryTable/HistoryTable";
 import AppForm from "./components/AppForm/AppForm";
+import PdfViewerComponent from "./components/PdfViewerComponent/PdfViewerComponent";
 
 import { fetchConvertedPdf } from "./services/endpoints";
-import { blobToDataUrl } from "./services/utils";
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+import { blobToDataUrl, getFilename } from "./services/utils";
 
 function App() {
   const [pdfFile, setPdfFile] = useState();
 
-  const displayPdf = (pdfBlob) => {
+  const displayPdfInViewer = (pdfBlob) => {
     const url = URL.createObjectURL(pdfBlob);
     setPdfFile(url);
   };
-
-  const getFilename = (text) =>
-    `${text.trim().substring(0, 10)}-${new Date()
-      .toISOString()
-      .replace("T", "-")}`;
 
   const textToPdf = (text) => {
     fetchConvertedPdf(text)
@@ -41,10 +34,10 @@ function App() {
           })
         );
 
-        displayPdf(pdfBlob);
+        displayPdfInViewer(pdfBlob);
       })
       .catch((error) => {
-        console.error("Error converting data to PDF: ", error);
+        console.error("Error while converting data to PDF: ", error);
       });
   };
 
@@ -56,16 +49,12 @@ function App() {
           Paste your text to convert it to PDF
         </h1>
       </header>
-      <main className="flex flex-row items-start justify-start w-full">
-        <div className="flex flex-col items-center justify-start w-3/4">
+      <main className="flex flex-col items-center justify-start w-full gap-5">
+        <div className="flex flex-row items-center w-full p-5">
           <AppForm convertData={textToPdf} />
-          {pdfFile && (
-            <Document file={pdfFile}>
-              <Page pageNumber={1} />
-            </Document>
-          )}
+          <HistoryTable displayPdf={displayPdfInViewer} />
         </div>
-        <HistoryTable displayPdf={displayPdf} />
+        {pdfFile && <PdfViewerComponent pdfFile={pdfFile} />}
       </main>
     </div>
   );
