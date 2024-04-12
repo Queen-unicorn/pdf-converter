@@ -7,8 +7,10 @@ function AppForm({ convertData }) {
 
   return (
     <form
-      className="flex flex-col w-full gap-4 items-center p-10"
+      className="flex flex-col w-3/4 gap-4 items-center p-10"
       onSubmit={(event) => {
+        event.preventDefault();
+
         if (!textareaRef.current.value.trim()) {
           setIsTextInvalid(true);
           return;
@@ -16,13 +18,13 @@ function AppForm({ convertData }) {
           setIsTextInvalid(false);
         }
 
-        event.preventDefault();
         convertData(textareaRef.current.value);
+        textareaRef.current.value = null;
       }}
     >
       <textarea
         ref={textareaRef}
-        className="w-1/2 h-40 p-4 bg-stone-200 text-brown border border-gray rounded-md focus:outline-none"
+        className="w-full h-40 p-4 bg-stone-200 text-brown border border-gray rounded-md focus:outline-none"
         placeholder="Enter your text here..."
       ></textarea>
 

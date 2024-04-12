@@ -19,3 +19,17 @@ export function getSortedStorage() {
       return dateB - dateA;
     });
 }
+
+export const getFilename = (text) =>
+  `${text.trim().substring(0, 10)}-${new Date()
+    .toISOString()
+    .replace("T", "-")}`;
+
+export const handleDownloadPdf = (pdfFile) => {
+  const link = document.createElement("a");
+  link.href = pdfFile;
+  link.download = "downloaded_file.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
