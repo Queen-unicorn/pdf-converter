@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+It's a PDF Converter project by Iryna Kovalenko
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+On this website you can convert any text to the .pdf, download it and see history of converting.
 
-## Available Scripts
-
-In the project directory, you can run:
+You can run this sproject locally using:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In App.js there is a main structure of the project.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Project components:
 
-### `npm test`
+- AppForm: component that contains form with textarea and "Convert to PDF" button.
+  Additionally it has textarea validation and Error displaying when user wants to convert an empty string.
+  For this component there is a test file.
+- PdfViewerComponent: component that does the main work for converting text to .pdf format.
+  First of all, we can find there a worker setup, also we have document loading and pages number calculation logic here.
+  For this component there is a test file.
+- HistoryTable: component that renders a Converting history table. It contains all the text we converted before. It stores files with filename like "(First 10 symbols)-(Date and time of creating).pdf" sorted by date of creating.
+  Data stores in localStorage.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Also for better understending of logic there is a services folder that contains:
+-endpoints: file with fetching API call. There is also an API_KEY
+-utils: file with functions to work with data - converting PDF file to Blob and back, sorting history, downloading file to the PC etc.
